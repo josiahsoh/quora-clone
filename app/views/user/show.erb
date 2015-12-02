@@ -1,0 +1,11 @@
+<h1>User Profile </h1>
+
+Name: <%= @user.name %><br>
+Email: <%= @user.email %><br>
+Description: <%= @user.description %><br>
+
+<a href="/users/<%= @user.id%>/edit">Edit Profile</a>
+<form action="/users/<%= @user.id %>" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <input type="submit" value="delete">
+</form>
