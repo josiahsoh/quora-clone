@@ -24,9 +24,23 @@ end
 # User login
 
 post '/users/login' do
-  user = User.find_by(email: params[:email], password: params[:password])
-  session[:user_id] = user.id
-  redirect "/users/#{user.id}"
+  user = User.find_by(email: params[:email])
+  
+ if user.authenticate(params[:password])
+    session[:user_id] = user.id
+    redirect "/users/#{user.id}"
+  elsif user.authenticate(params[:password]) != user.password
+    redirect '/users/wrong_password'
+  else
+    redirect '/'
+  end
+end 
+#if submit without enter text it will create NoMethodError...how to solve?
+#how to create a minimum password? At least 8 characters?
+
+# Wrong password enter
+get '/users/wrong_password' do
+  erb :"user/wrong_password"
 end
 
 # User logout
