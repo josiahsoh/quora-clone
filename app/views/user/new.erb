@@ -1,11 +1,13 @@
 <h1>Create New User</h1>
 
+<p>Join us and be part of our communities around the world!</p>
+
 <form action="/users" method="POST">
-	<label>Name: </label>
-    <input type="text" name="name"><br>
-    <label>Email: </label>
-    <input type="email" name="email"><br>
-    <label>Password: </label>
-    <input type="password" name="password">
-    <input type="submit" value="Create user">
+	<label for="name">Name: </label>
+	<input type="text" name="name"><br>
+	<label for="email">Email: </label>
+	<input type="email" name="email"><br>
+	<label for="password">Password: </label>
+	<input type="password" name="password"><br>
+	<input type="submit" value="Submit" id="submit_btn">
 </form>

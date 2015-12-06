@@ -1,2 +1,13 @@
-<h1>Hello World</h1>
-<p>See Me in views/static/index.html.erb</p>
+<h1> Welcome to Jo-Quora</h1>
+
+<h1>Login Page</h1>
+
+<form action="/users/login" method="POST">
+  <lable for="email">Email</lable>
+  <input type="text" name="email">
+  <label for="password">password</label>
+  <input type="password" name="password">
+  <input type="submit" value="Submit" id="submit_btn"/>
+</form>
+
+<a href="/users/new">Sign Up Here</a>
