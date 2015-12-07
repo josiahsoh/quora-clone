@@ -28,7 +28,7 @@ post '/users/login' do
   
  if user.authenticate(params[:password])
     session[:user_id] = user.id
-    redirect "/users/#{user.id}"
+    redirect "/users/#{user.id}" #Do you know why have to use "user.id"?
   elsif user.authenticate(params[:password]) != user.password
     redirect '/users/wrong_password'
   else
@@ -75,7 +75,7 @@ end
 patch '/users/:id' do
   user = User.find(params[:id])
   user.update(name: params[:name], email: params[:email], password: params[:password], description: params[:description])
-  redirect "/users/#{user.id}"
+  redirect "/users/#{user.id}" #It does not pass the variables if using @user
 end
 
 # Delete user
@@ -89,7 +89,9 @@ end
 # View user profile
 
 get '/users/:id' do
+  authorize
   @user = User.find(params[:id])
+  owner_only(@user.id)
   erb :"user/show"
 end
 
@@ -97,4 +99,22 @@ end
 
 get '/users' do
   erb :"user/index"
+end
+
+# user authorization
+def authorize
+  if session['user_id']
+    true
+  else
+    redirect '/'
+  end
+end
+
+# only can view by user after login
+def owner_only(user_id)
+  if session['user_id'] == user_id
+    true
+  else
+    redirect '/'
+  end
 end

@@ -1,0 +1,6 @@
+<h1> All your questions </h1>
+<% @user.question.each do |q| %>
+  <%= q.question_title %> 
+  <%= q.question_body %>
+<% end %>
+

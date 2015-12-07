@@ -1,0 +1,19 @@
+<h1> Here is your specific question</h1>
+
+Title: <%= @question.question_title %>
+<br>
+Body: <%= @question.question_body %>
+
+<br>
+<br>
+<form action="/questions/<%= @question.id%>" method="post">
+<input type="hidden" name="_method" value="delete">
+<input type="submit" value="delete" />
+</form>
+<br />
+<div>
+	<a href="/answers/new?question=<%= @question.id%>">Answer This Question!</a>
+</div>
+<div>
+	<a href="/users/<%= @user.id%>">Back To Your Profile</a>	
+</div>
